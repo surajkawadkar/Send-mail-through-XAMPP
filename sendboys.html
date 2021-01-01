@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Us</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    body{
+       
+            height:600px;
+          #  background: linear-gradient(to top right, #0000ff 0%, #ccffff 100%);
+		  background: linear-gradient(57deg, #00C6A7 , #1E4D92 ); 
+       
+    }
+
+   
+        * {
+          box-sizing: border-box;
+        }
+        
+        input[type=text], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          resize: vertical;
+        }
+        
+        label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+        }
+        
+        
+        
+        .container {
+          border-radius: 5px;
+          margin-top: 50px;
+          background-color: rgba(0,0,0, 0.4);
+          padding: 20px;
+        }
+        
+        .col-20 {
+          float: left;
+          width: 20%;
+          margin-top: 6px;
+        }
+        
+        .col-80 {
+          float: left;
+          width: 80%;
+          margin-top: 6px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+          .col-20, .col-80, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+
+        .btn_position
+        {
+            margin-left: 1000px;
+        }
+        
+		.btn_position
+    {
+        margin-left: 800px;
+    }
+        </style>
+    
+<body>
+
+
+<br>
+
+
+
+<div class="container">
+  <form  action="mailboys.php" method="POST" >
+    <div class="row">
+      <div class="col-20">
+        <label for="fname"><h5 style="color:white">subject</h5></label>
+      </div>
+      <div class="col-80">
+        <input type="text" id="email" name="sub" placeholder="subject">
+      </div>
+    </div>
+    
+   
+      
+    <span id="emailerr" class="text-danger"></span><br>
+    <div class="row">
+        
+      <div class="col-20">
+          
+        <label for="subject"><h5 style="color:white">message</h5></label>
+      </div>
+      <div class="col-80">
+        <textarea id="subject" name="msg" placeholder="Write Your message Here.." style="height:200px" required></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-success btn_position">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+
+<script type="text/javascript">
+    function validation(){  
+    
+    var mail = document.getElementById('email').value;
+  
+    var emailcheck = /^[A-Za-z_0-9]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+
+    
+  if(emailcheck.test(mail))
+  {
+    document.getElementById('email').innerHTML=null;
+  }
+  else
+  {
+    document.getElementById('emailerr').innerHTML="Invalid Mail";
+    document.getElementById('emailerr').style.fontWeight="40px";
+    /*
+    document.getElementById('emailerr').style.border="1px solid red";
+    document.getElementById('emailerr').style.backgroundColor="#FCEBEE";
+    document.getElementById('emailerr').style.padding="5px";
+   */
+    return false; 
+  }
+    } 
+
+</script>
+</body>
+</html>
+
+

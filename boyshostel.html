@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Boys hostel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+        body{
+       
+            height:800px;
+            background: linear-gradient(to top right, #0000ff 0%, #ccffff 100%);
+			background: linear-gradient(57deg, #00C6A7 , #1E4D92 ); 
+   }
+
+   
+.topnav .search-container {
+    float: right;
+  }
+</style>
+<body>
+
+    <!-- Modal to add student starts -->
+    <div class="modal fade" id="addstudent" role="dialog">
+            <div class="modal-dialog modal-lg text-center">
+              <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title">Add a Boy to hostel</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+                </div>
+                <div class="modal-body">
+                  <form action="loginb.php" method="POST">
+                      <!-- <label>Full Name:</label><br> -->
+                      <input type="text" placeholder="Your Name" name='uname' style="width:400px;">
+                      <br>
+                      <br>
+                      <!-- <label>Email Id:</label><br> -->
+                      <input type="text" placeholder="Your Email" name='email' style="width:400px;">
+                      <br>
+                      <br>
+                      <!-- <label>Contact No.:</label><br> -->
+                      <input type="text" placeholder="Your Contact" name='contact' style="width:400px;">
+                      <br>
+                      <br>
+                      <!-- <label>Permanent Address:</label><br> -->
+                      <input type="text" placeholder="Your Address" name='addres' style="width:400px;">
+                      <br>
+                      <br>
+                      <!-- <label>Class:</label><br> -->
+                      <input type="text" placeholder="Your Class" name='class' style="width:400px;">
+                      <br>
+                      
+                 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="submit" input type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- Modal to add student ends -->
+
+<div class="container mt-3">
+   <h1>Boy's Hostel Details</h1>
+  <!-- <input class="form-control" id="myInput" type="text" placeholder="Search.." style="width:500px; margin-left:600px;">
+  <span><button type="submit"><i class="fa fa-search"></i></button></span>
+   -->
+<div class="card col-lg-12">
+    <div class="card-header">
+        
+       <div class="search-container text-center">
+        <!-- <form> -->
+                <button class="btn btn-primary" style="margin-right: 500px;"  data-toggle="modal" data-target="#addstudent">Add</button>
+
+               <!--<a href="mail.php"   button class="btn btn-primary" style="margin-right: 50px;> send mail</button>-->
+                
+				<a href="sendboys.php" type="button" class="btn btn-success btn_position">send mail</a> 
+          <input type="text" id="myInput" placeholder="Search.." name="search" style="width:300px">
+         <i class="fa fa-search" style="margin-left:-30px"></i>
+        <!-- </form> -->
+      </div>
+    </div>
+  <table class="table table-bordered" style="background-color: white">
+    <thead>
+      <tr>
+        <th>Sr no</th>
+        <th>Student Name</th>
+        <th>Mail</th>
+		    <th>Address</th>
+        <th>Contact</th>
+
+      </tr>
+    </thead>
+    <tbody id="myTable">
+    <?php
+        $host = "localhost";
+        $dbUsername = "root";
+        $dbPassword = "";
+        //$dbContact = "";
+        
+        $dbname = "final";
+        //create connection
+        $conn = new mysqli($host, $dbUsername,  $dbPassword, $dbname);
+        if ($conn) {
+          echo "";
+        } else {
+         die("Connect faild ".mysqli_connect_error());
+        }
+        
+        $result = "SELECT * FROM db1";
+        $res = $conn->query($result);
+        if($res->num_rows>0)
+        {
+          while($row = $res->fetch_assoc())
+          {
+            echo "<tr><td>".$row["id"]."</td><td>".$row["username"]."</td><td>".$row["email"]."</td><td>".$row["addres"]."</td><td>".$row["contact"]."</td>";
+         }
+          echo "</table>";
+        }
+        else{
+          echo "0 rows selected";
+        }
+        ?>
+    </tbody>
+  </table>
+  
+  
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
