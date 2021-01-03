@@ -10,3 +10,4 @@ git bash practicing
 it was a existing repo
 i cloned it
 now trying to push
+git push -u origin master =====works
